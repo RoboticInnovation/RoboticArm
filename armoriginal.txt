@@ -1,0 +1,110 @@
+﻿/*This is my original code I completed over Christmas break. This is what’s needed to get the pins on the raspberry Pi to fire/turn high/low. To Compile this code I use gcc robot.c -lbcm2835 -o arm and then ./arm to run with ‘0’ to exit. 
+*/
+#include <stdio.h>
+#include <stdlib.h>
+#include <bcm2835.h>
+//-lbcm2835
+void print_statement(void);
+#define m1 RPI_BPLUS_GPIO_J8_37
+#define m2 RPI_BPLUS_GPIO_J8_35
+#define m3 RPI_BPLUS_GPIO_J8_40
+#define m4 RPI_BPLUS_GPIO_J8_38
+#define m5 RPI_BPLUS_GPIO_J8_33
+#define m6 RPI_BPLUS_GPIO_J8_36
+#define m7 RPI_BPLUS_GPIO_J8_18
+#define m8 RPI_BPLUS_GPIO_J8_16
+
+
+int main()
+{
+if (!bcm2835_init()) return 1;
+bcm2835_gpio_fsel(m1, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m2, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m3, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m4, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m5, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m6, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m7, BCM2835_GPIO_FSEL_OUTP);
+bcm2835_gpio_fsel(m8, BCM2835_GPIO_FSEL_OUTP);
+int x;
+
+
+print_statement();
+scanf("%d", &x);
+while (x!=0){
+    switch(x) {
+    
+    case 1 :
+        bcm2835_gpio_write(m1, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m1, 0);
+    break;
+
+
+    case 2 :
+        bcm2835_gpio_write(m2, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m2, 0);
+    break;
+  
+    case 3:
+        bcm2835_gpio_write(m3, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m3, 0);
+    break;
+
+
+    case 4:
+        bcm2835_gpio_write(m4, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m4, 0);
+    break;
+
+
+    case 5:
+        bcm2835_gpio_write(m5, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m5, 0);
+    break;
+
+
+    case 6:
+        bcm2835_gpio_write(m6, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m6, 0);
+    break;
+
+
+    case 7:
+        bcm2835_gpio_write(m7, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m7, 0);
+    break;
+
+
+    case 8:
+        bcm2835_gpio_write(m8, 1);
+            bcm2835_delay(1000);
+        bcm2835_gpio_write(m8, 0);
+    break;
+
+
+    default:
+    puts("Enter a valid number or 0 to exit:\n");
+    };
+    print_statement();
+ 
+scanf("%d", &x);
+};
+bcm2835_close();
+}
+ 
+ 
+void print_statement (void)
+{
+printf("Which way would you like to move?\n");
+puts("1~base left\n2~base right");
+puts("3~base up\n4~base down");
+puts("5~middel up\n6~middel down");
+puts("7~top up\n8~top down");
+}
